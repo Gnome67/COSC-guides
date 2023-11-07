@@ -232,3 +232,40 @@ Assume n - k = 0, n = k
 2^(n+1) - 1
 O(2^n)
 ```
+
+# Recurrence Relations
+
+```cpp
+void Test(int n)
+{
+    if(n > 1)
+    {
+      cout << n;
+      test(n/2);
+    }
+}
+```
+```
+Above recurrence is T(n/2) + 1
+T(n) = { 1          if n = 1
+       { T(n/2) + 1 if n > 1
+
+  T(n)
+ /    \
+1      T(n)
+      /   \
+     1     T(n/2^2)
+           /      \
+         1      T(n/2^3)
+                /      \
+              1        T(n/(2^k))
+
+log(n) levels with constant subtrees = O(logn)
+
+Substitution
+
+Solve for T(n) ... T(n/k)
+T(n) = T(n/(2^k))+k
+Assume n/2^k = 1, n = 2^k and k = logn
+T(n) = T(1) + logn = 1 + logn = O(logn)
+```
