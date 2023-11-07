@@ -424,7 +424,7 @@ void* threadInstructions(void* arg)
 
 When you are initializing the threads, you must pass in instructions for the threads to follow. This function (named threadInstructions) provides the instructions for each thread.
 
-# Part 5: Caonclusion
+# Part 5: Conclusion
 
 Let me know if I should add anything to this:
 
