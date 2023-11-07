@@ -249,6 +249,7 @@ One last thing. We need the fireman function from the fireman.cpp file from the 
 
 I leave the rest up to you because everyone’s code is unique, but if you did it the same way as me where you had a helper function for your algorithm and you sent a string to and from your client and server, then besides calling the appropriate functions, you should be done. See you in PA3.
 
+```
 Assistant Professor tzkal
 Department of Scuffed Sciences
 Office: PGH 533
@@ -259,3 +260,4 @@ Version 0.01 - 10/1/2023
 Version 0.02 - 10/8/2023 (fixed typo)
 Version 0.03 - 10/17/2023 (fixed typo)
 Version 0.04 - 11/6/2023 (moved to github)
+```
