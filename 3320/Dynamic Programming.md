@@ -216,9 +216,9 @@ Pass 5: we know fib(5) since we know fib(4) and fib(3) so we can add 5 (the valu
 [0, 1, 1, 2, 3, 5, 8]
 ```
 
-```gridTraveler
+gridTraveler
 Write a function gridTraveler, that given a m*n matrix, count how many ways can you traverse from the top left to the bottom right, given you can only move down or right
-
+```
 Naive Solution Visualization:
 
      0,0
