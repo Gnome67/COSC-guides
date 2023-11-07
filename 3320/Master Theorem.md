@@ -1,16 +1,19 @@
-Let T(n) = aT(n/b) + cn^k, and let T(1) = c
-where a, b, c, and k are all constants, solve to:
+Let T(n) = aT(n/b) + cn^k, and let T(1) = c where a, b, c, and k are all constants, solve to:
+```
 1. T(n) E Theta-O(n^k)        if a < b^k
 2. T(n) E Theta-O(n^k logn)   if a = b^k
 3. T(n) E Theta-O n(logb(a))  if a > b^k
+```
 
 DC Recurrence Theorem
 
 Let T(n) = aT(n/b) + f(n) where a >= 1 and b > 1 are constants and f(n) is a function. Let T(1) = Theta-O(1).
 Suppose there's a constant c such that af(n/b) = cf(n). Then the solution for the above recurrence T(n) is:
+```
 1. if c < 1 (decreasing) then T(n) = Theta-O(f(n))
 2. if c > 1 (increasing) then T(n) = Theta-O(n^logb(a))
 3. if c = 1 then T(n) = Theta-O(f(n)logb(n))
+```
 
 Ex. T(n) = T(n/2) + 1, T(1)
 The runtime of this algorithm can be written out as a piecewise function shown below:
@@ -55,3 +58,21 @@ where a = 3, b = 2, k = 1
 
 - Since a > b^k, 3 > 2, wWe can apply the following case of the Master Theorem:
 T(n) = Theta-O(n^logb(a)) = Theta-O(n^log3(2))
+
+# Addendum:
+
+```
+T(n) = T(n-1)+1 (remove constants) => O(n)
+T(n) = T(n-1) + n (remove constants) => O(n^2)
+T(n) = T(n-1) + logn (remove constants) => O(nlogn)
+T(n) = 2T(n-1) + 1 (remove constants) => O(2^n)
+
+Theorem:
+T(n) = aT(n-b) + f(n)
+a > 0, b > 0, f(n) = O(n^k) where k >= 0
+
+Cases
+1. a < 1 = O(n^k) * O(f(n))
+2. a = 1 = O(n^k+1) or O(n*f(n))
+3. a > 1 = O(n^k * a^(n/b)) or O(f(n) * a^(n/b))
+```
