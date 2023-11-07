@@ -64,33 +64,33 @@ extraFreq = self-explanatory. The frequency we are about to calculate the entrop
 
 Ok… now that we have that defined, we can move to step 2.
 
-NFreq = currFreq + extraFreq
+```NFreq = currFreq + extraFreq```
 
 What is NFreq? NFreq is the sum of the currFreq and extraFreq, of course! I’m not sure what the N in NFreq stands for, but that's not really the point of this guide to tell you.
 
-If NFreq == extraFreq then: H = 0
+```if NFreq == extraFreq then: H = 0```
 
 H is the entropy we are calculating for the current loop, not to be confused with currH, the entropy we calculated for the loop right before our current loop. This simple conditional states that if NFreq = extraFreq, then the entropy is zero, and we can move on to the next pair. This conditional will ALWAYS be true if we are in the first pass of the loop we have (and if extraFreq is always zero, but that is probably never going to happen).
 
-Else (if freq[selectedTask] == 0 then currentTerm = 0) (else currentTerm = freq[selectedTask * logb(freq[selectedTask])
+```else (if freq[selectedTask] == 0 then currentTerm = 0) (else currentTerm = freq[selectedTask * logb(freq[selectedTask])```
 
 Let’s break this down because it’s a bit more complicated than what we’ve seen so far. If the frequency array for the selected task is currently zero, then the currentTerm is zero. What’s the currentTerm? We use it to calculate the entropy, and that’s all you really need to know to do this task. If you really want to know, ask the professor.
 
 However, what if the selected task is currently not zero? Then, we multiply the frequency of the selected task by the log sub-2 of the frequency of the selected task. (B is 2, and will be known as such as we further discuss the algorithm).
 
-End if
+```end if```
 
 Just to clarify, this means that the conditional from lines 4 - 9 in the provided picture is complete, and the remaining code executes regardless of what current Term is. The conditional in lines 2 and 3 will completely finish the loop without question and go straight to line 12.
 
-newTerm = (freq[selectedTask] + extraFreq) * log2(freq[selectedTask] + extraFreq)
+```newTerm = (freq[selectedTask] + extraFreq) * log2(freq[selectedTask] + extraFreq)```
 
 newTerm, much like currentTerm, is only used for the entropy algorithm, and so we don’t need to delve too deep into its origins. This one should be self explanatory, similarly to the formula we used to create the currentTerm, with the difference this will execute regardless of the current frequency in the array for selectedTask.
 
-H = log2(NFreq) - ((log2(currFreq) - currH) * (currFreq) - currentTerm + newTerm) / NFreq
+```H = log2(NFreq) - ((log2(currFreq) - currH) * (currFreq) - currentTerm + newTerm) / NFreq```
 
 This one should be self explanatory as well. The entropy, assuming you made it past line 2, is calculated by this lengthy function here.
 
-Return H, NFreq
+```return H, NFreq```
 
 For the purposes of this pseudocode, it will return two variables, which I will refer to as a tuple. I personally did not return NFreq, since it’s not used anywhere else in your code (at least it should not be) besides this function, and a for loop inside your entropy function (which is what I did) will eliminate the need to pass in any more than 2 variables (depending on your implementation) and return only 1 (depending on your implementation). That being said, I don’t think there’s anything wrong with returning more than 1 variable, or passing in more than 2. I just personally don’t see a need when the majority of these variables passed in are used only in this algorithm.
 
@@ -104,6 +104,7 @@ Let’s start with A and 2.
 
 When we start, everything is initialized to 0.
 
+```
 Frequency Array: A = 0, B = 0, C = 0
 currFreq = 0
 currH = 0
@@ -111,9 +112,10 @@ selectedTask = ‘ ‘
 extraFreq = 0
 H = 0
 NFreq = 0
-
+```
 Let’s pass in A and 2
 
+```
 Frequency Array: A = 0, B = 0, C = 0
 currFreq = 0
 currH = 0
@@ -121,24 +123,30 @@ selectedTask = ‘A‘
 extraFreq = 2
 H = 0
 NFreq = 0
+```
 
 Hmm, not much changed. Let’s try to calculate entropy, anyways. First up, we calculate NFreq.
 
+```
 NFreq = currFreq + extraFreq
 N = 0 + 2 = 2
 NFreq = 2
+```
 
 Okay, so NFreq is equal to extraFreq. I wonder if that is important…
 
-If NFreq == extraFreq then: H = 0
+```if NFreq == extraFreq then: H = 0```
 
 Well, they are equal. H = 0, we skip everything up till line 12. Let’s go look at line 12.
 
-End if
-Return H, NFreq.
+```
+end if
+return H, NFreq.
+```
 
 Well, that was quick. Let’s try B = 4
 
+```
 Frequency Array: A = 2, B = 0, C = 0
 currFreq = 2
 currH = 0
@@ -146,11 +154,13 @@ selectedTask = ‘ ‘
 extraFreq = 0
 H = 0
 NFreq = 2
+```
 
 Wow, that looks way different. What changed? Well, Frequency Array has been updated to be the sum of its current value and the extra frequency. currFreq is now two, since we currently calculated the frequency to be two. We haven’t started the next loop just yet. We reset selectedTask and extraFreq because we passed that already, and we are going to work on the next loop. NFreq, the sum of the current and extra frequencies, is two.
 
 Let’s plug in B and 4
 
+```
 Frequency Array: A = 2, B = 0, C = 0
 currFreq = 2
 currH = 0
@@ -158,26 +168,31 @@ selectedTask = ‘B‘
 extraFreq = 4
 H = 0
 NFreq = 2
+```
 
 Awesome! Let’s do some math.
 
+```
 NFreq = currFreq + extraFreq
 NFreq = 2 + 4
 NFreq = 6
+```
 
 NFreq is not equal to currFreq. Let’s see what changes now.
 
-If NFreq == extraFreq == 0 then: entropy = 0
+```if NFreq == extraFreq == 0 then: entropy = 0```
 
 Nope. NFreq is not equal to extraFreq. Let’s keep going.
 
-Else (if freq[selectedTask] == 0 then currentTerm = 0) (else currentTerm = freq[selecredTask] * log2(freq[SelectedTask])
+```else (if freq[selectedTask] == 0 then currentTerm = 0) (else currentTerm = freq[selecredTask] * log2(freq[SelectedTask])```
 
 Okay, so our frequency for the selectedTask is 0 right now, so currentTerm stays 0. Let’s keep going
 
-newTerm = (freq[selectedTask] + extraFreq) * log2(freq[selectedTask] + extraFreq)
+```
+	newTerm = (freq[selectedTask] + extraFreq) * log2(freq[selectedTask] + extraFreq)
 	newTerm = (0 + 4) * log2(0 + 4)
 	newTerm = 4 * log2(4)
+```
 
 Well, I could calculate this for you, but you have calculators, right? I’ll just show you what the code in C++ would look like because I’m so nice.
 
@@ -194,10 +209,13 @@ H = .92
 
 Same thing here, too lazy to calculate, but you would get an entropy of .9182, which rounds to .92 (all the answers must have only two digits to the right of the decimals).
 
+```cpp
 double entropy = log2(NFreq) - ((log2(currFreq) - currH) * (currFreq)-currTerm + newTerm) / NFreq;
+```
 
 Okay, so we’ve done A and B. Let’s do C. Right now, our variables look like this:
 
+```
 Frequency Array: A = 2, B = 4, C = 0
 currFreq = 6
 currH = 0.92
@@ -205,9 +223,11 @@ selectedTask = ‘ ‘
 extraFreq = 0
 H = 0
 NFreq = 6
+```
 
 Remember to update the currFreq, currH, and the frequency array. Now, let’s plug in C.
 
+```
 Frequency Array: A = 2, B = 4, C = 0
 currFreq = 6
 currH = 0.92
@@ -215,31 +235,40 @@ selectedTask = ‘C‘
 extraFreq = 3
 H = 0
 NFreq = 6
+```
 
 And now, we run through the algorithm once more.
 
+```
 NFreq = currFreq + extraFreq
 NFreq = 6 + 3
 NFreq = 9
+```
 
-if(NFreq == extraFreq) then: H = 0
+
+```if(NFreq == extraFreq) then: H = 0```
 
 NFreq is not equal to extraFreq, so we keep moving
 
-Else: (if freq[selectedTask] == 0) then: currentTerm = 0
+```else: (if freq[selectedTask] == 0) then: currentTerm = 0```
 
 If we look at the frequency array, C = 0, so that means currentTerm will be 0.
 
+```
 newTerm = (freq[selectedTask] + extraFreq) * log2(freq[selectedTask] + extraFreq)
 newTerm = (0 + 3) * log2(0 + 3)
 newTerm = 3 * log2(3)
+```
 
+```
 H = log2(NFreq) - ((log2(currFreq) - currH) * (currFreq) - currentTerm+newTerm)/NFreq
 H = log2(9) - ((log2(3) - 0.92) * (6) - 0 + (3 * log2(3))/9
 H = 1.53
+```
 
 You get the gist, let’s move on to A 7. But before we do, let’s look at our variables.
 
+```
 Frequency Array: A = 2, B = 4, C = 3
 currFreq = 9
 currH = 1.53
@@ -247,9 +276,11 @@ selectedTask = ‘ ‘
 extraFreq = 0
 H = 0
 NFreq = 9
+```
 
 Let’s push in A and 7.
 
+```
 Frequency Array: A = 2, B = 4, C = 3
 currFreq = 9
 currH = 1.53
@@ -257,38 +288,48 @@ selectedTask = ‘A‘
 extraFreq = 7
 H = 0
 NFreq = 9
+```
 
 We know the drill, let’s do the math.
 
-NFreq = currentFreq + extraFreq
+```
+	NFreq = currentFreq + extraFreq
 	NFreq = 9 + 7
 	NFreq = 16
+```
 
-If NFreq == extraFreq then: H = 0
+```if NFreq == extraFreq then: H = 0```
 
 They are not equal so we keep going.
 
-Else (if freq[selectedTask] == 0 then currentTerm = 0) (else currentTerm = freq[selectedTask] * log2(freq[selectedTask])
+```else (if freq[selectedTask] == 0 then currentTerm = 0) (else currentTerm = freq[selectedTask] * log2(freq[selectedTask])```
 
 For the first time, the frequency for the selectedTask in the frequency array is not 0. So we calculate currentTerm as the frequency of the selectedTask in the frequency array multiplied by the log2 of the frequency of the selectedTask in the frequency array.
 
+```
 currentTerm = freq[selectedTask * log2(freq[selectedTask]
 currentTerm = 2 * log2(2)
+```
 
 The newTerm will also change now that we finally have a frequency in the frequency array for the selectedTask
 
+```
 newTerm = (freq[selectedTask] + extraFreq) * log2(freq[selectedTask] + extraFreq)
 newTerm = (2 + 7) * log2(2 + 7)
 newTerm = 9 * log2(9)
+```
 
 And finally, the entropy.
 
+```
 H = log2(NFreq) - ((log2(currFreq) - currH) * (currFreq) - currentTerm+newTerm)/NFreq
 	H = log2(16) - ((log2(9) - 1.53) * (9) - (2 * log(2)) + (9 * log(9)))/16
 	H = 1.42
+```
 
 Now, let’s update our frequency array.
 
+```
 Frequency Array: A = 9, B = 4, C = 3
 currFreq = 16
 currH = 1.42
@@ -296,6 +337,7 @@ selectedTask = ‘ ‘
 extraFreq = 
 H = 1.42
 NFreq =16
+```
 
 Wait, why is A = 9? Shouldn’t it be 7? We are going to update the array by adding the extraFrequency to the array’s index.
 
