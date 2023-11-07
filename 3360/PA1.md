@@ -470,5 +470,13 @@ When you are initializing the threads, you must pass in instructions for the thr
 
 Let me know if I should add anything to this:
 
+```
+Assistant Professor tzkal
+Department of Scuffed Sciences
+Office: PGH 533
+Phone Number: no
+E-mail: no
+
 Version 0.01 - 9/15/2023
 Version 0.02 - 11/6/2023
+```
