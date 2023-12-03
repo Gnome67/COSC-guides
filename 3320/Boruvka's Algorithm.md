@@ -36,7 +36,7 @@ while completed == false:
     if is-preferred-over(uv, yz) then
       Set uv as the cheapest edge for the component of v
   if all components have cheapest edge set to "None" then
-    // no more trees can be merged -- we are finished
+    # no more trees can be merged -- we are finished
     completed = true
   else
     completed = false
