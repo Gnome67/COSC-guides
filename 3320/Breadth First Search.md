@@ -9,7 +9,7 @@ Implementation:
 - Queue: O(Vertices + Edges)
 - Priority Queue: O(Vertices + Edges * log(Edges))
 
-### Iterative Implementation
+# Iterative Implementation
 1. Push a vertex into the queue
 2. Pop from the front of the queue and add it to the visited list.
 3. Create a list of the vertex's adjacent nodes. Add the unvisited to the queue.
@@ -29,7 +29,7 @@ function bfs(v):
       q.push(node)
 ```
 
-### Recursive Implementation
+# Recursive Implementation
 1. Pass a queue of vertices
 2. Iterate across each node in a level of the graph.
 3. Visit all of that node's unvisited neighbors.
@@ -48,7 +48,7 @@ function bfs(level):
   bfs(next_level)
 ```
 
-### Tracing
+# Tracing
 
 Use the FIFO Property of the queue to trace the level order of a BFS.
 
