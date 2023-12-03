@@ -223,8 +223,7 @@ Breakdown:
 1. initialize a list of distances to -1
 2. Set distance[start] to 0
 3. Call topological sort with our adjacency list
-4. If distances[node] = -1
-- continue
+4. If distances[node] = -1, continue
 5. Otherwise find the max of the incoming distances
 
 Proof of Correctness:
