@@ -36,7 +36,6 @@ function dfs v:
 
 Tracing a graph using DFS is all about going as far ahead as possible and backtracking
 
-Graph:
 ![Graph2](https://github.com/Gnome67/COSC-guides/assets/102388813/720a6b52-f43b-4965-8eaf-4edd36643c7d)
 
 visited: [0]
