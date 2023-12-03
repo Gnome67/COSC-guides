@@ -68,7 +68,7 @@ we know what fib(0) is, now we can store it and solve fib(1)...fib(n)
 since we have fib(0) stored we never have to call fib(0) again, we can just check if its in the array
 same for fib(1) once we solve it, fib(2), fib(3)...fib(n)
 
-## Pseudocode
+### Pseudocode
 
 Dynamic Programming (Memoization)
 ```py
@@ -87,7 +87,7 @@ function fibonacci(n)
   return lookup_table[n]
 ```
 
-## Python Code
+### Python Code
 
 ```py
 def fib(n, memo): # Memoization
@@ -111,7 +111,7 @@ def fib_bottom_up(n): # Tabulation
   return bottom_up[n]
 ```
 
-## Visualization
+### Visualization
 
 ```js
 //Naive Solution
@@ -193,9 +193,8 @@ Pass 5: we know fib(5) since we know fib(4) and fib(3) so we can add 5 (the valu
 
 Write a function gridTraveler, that given a m*n matrix, count how many ways can you traverse from the top left to the bottom right, given you can only move down or right
 
-```
 Naive Solution Visualization:
-
+```
      0,0
     /   \
    D     R
@@ -204,24 +203,25 @@ Naive Solution Visualization:
 
 note the # of times we call D/R
 ```
+Naive Solution:
 ```js
-// Naive Solution
 const gridTraveler = (m, n) => {
   if (m === 1 && n == 1) return 1;
   if (m === 0 || n === 0) return 0;
   return gridTraveler(m - 1, n) + gridTraveler(m, n - 1);
 };
 ```
+Memoization Solution:
 ```js
 // The memoization visualization is just the starting point because all D and Rs are duplicates lol
-// Memoization Solution
 const gridTraveler = (m, n, memo={}) => {
   const key = m + ',' + n;
   if(m === 1 && n == 1) return 1;
   if(m === 0 || n === 0) return 0;
   return gridTraveler(m - 1, n) + gridTraveler(m , n - 1);
 ```
-```Tabulation Visualization
+Tabulation Visualization:
+```
 3x3 matrix, 6 ways to traverse
 [0, 0, 0, 0]
 [0, 0, 0, 0]
@@ -301,7 +301,7 @@ the following line consists of length n string (character array) that is the str
 4. Check if the substring is a palindrome and marking any palindromes at table[start][end]
 5. Calculate the minimum cuts and store into the array.
 
-## Pseudocode
+### Pseudocode
 
 Declare two arrays:
 1. Lookup table of boolean
@@ -328,7 +328,7 @@ function minimum_palindromes(length, string):
   return cuts[length-1]+1
 ```
 
-## Top Down Pseudocode (Memoization)
+### Top Down Pseudocode (Memoization)
 ```py
 function minimum_palindromes(length, string):
   # assume there is a local function called is_palindrome(start, end)
