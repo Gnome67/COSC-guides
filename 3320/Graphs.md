@@ -6,42 +6,6 @@ Clearly indicate the following structures from the given directed graph:
 
 ![graphs](https://github.com/Gnome67/COSC-guides/assets/102388813/95ff0c70-b9bd-4a82-acae-9c4ab07d1470)
 
-# Depth First Search (DFS)
-
-Like BFS, DFS is an algorithm used for searching all the vertices of a graph while avoiding cycles. The difference is that DFS uses a backtracking and a stack.
-- You move forward down a path until there are no more nodes.
-- Move backwards on the same path until you find neighboring nodes to traverse.
-- All the nodes will be visited on the current path till all the unvisited nodes have been traversed.
-
-Implementation:
-- Queue: O(Vertices + Edges)
-
-### Recursive Implementation
-
-```py
-function dfs(v):
-  if v is unvisited:
-    visited[v] = true
-  for each node in neighbors(v):
-    dfs(node)
-```
-
-### Iterative Implementation
-
-```py
-function dfs v:
-  # let S be a stack
-  S.push(v)
-  visited[v] = true
-  while S is not empty:
-    u = S.top()
-    S.pop()
-    for each node in neighbors(v):
-    if node is unvisited:
-      S.push(node)
-      visited[node]
-```
-
 ### Tracing
 
 Tracing a graph using DFS is all about going as far ahead as possible and backtracking
