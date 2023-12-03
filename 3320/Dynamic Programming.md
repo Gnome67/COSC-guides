@@ -1,4 +1,7 @@
 Dynamic programming is an algorithmic technique where the problem is broken down into subproblems whose results are saved in order to help us solve the overall problem.
+There are two types of Dynamic Programming: 
+- Memoization: Recursive
+- Tabulation: Iterative
 
 Memoization:
 - Top-Down approach
@@ -15,6 +18,10 @@ Tabulation
 - Start from 1, cache each of the results and continue to iterate until we reach n
 - Build towards the solution as you continually compute each subresult
 
+3 steps to DP
+1. Recursion
+2. Store (Memoize)
+3. Bottom-Up (Tabulation)
 
 Example of Naive Solution vs Dynamic Programming
 
@@ -26,6 +33,21 @@ function fibonacci(n)
   else
     result = fibonacci(n-1) + fibonacci(n-2)
 ```
+What's the issue with this code?
+We have a lot of repeated calls. fib(2) is called 3 times if n = 5, fib(1) and fib(3) are called twice, etc.
+Fibonacci Recursive is O(2^n) since you are making 2 recursive calls everytime.
+
+With Dynamic Programming you can just store the results in an array and access the list whenever you need a result. This makes the code O(n) which is more efficient
+
+Visualization for Fibonacci:
+fill an array of n size with all -1
+we don't know what fib(n) is so solve for fib(n-1)
+we don't know what fib(n-1) is so solve for fib(n-2)... fib(n-n)
+we know what fib(0) is, now we can store it and solve fib(1)...fib(n)
+since we have fib(0) stored we never have to call fib(0) again, we can just check if its in the array
+same for fib(1) once we solve it, fib(2), fib(3)...fib(n)
+
+## Pseudocode
 
 Dynamic Programming (Memoization)
 ```py
@@ -44,54 +66,8 @@ function fibonacci(n)
   return lookup_table[n]
 ```
 
-Example: __Coin Problem: Minimum Bills__
-In a strange country (Algostan), the currency is available in the following denominations: $1, $4, $7, $13, $28, $52, $91, $365. Find the minimum bills that add up to a given sum $k.
-```py
-function change(k)
-  if k < 0:
-    return infinity
-  if k not in memo:
-    lookup[k] = infinity
-    for coin in coins:
-      lookup[k] = min(change(k - coin), k)+1
-  return lookup[k]
-```
+## Python Code
 
-Fibonacci Recursive is O(2^n) since you are making 2 recursive calls everytime
-With Dynamic Programming you can just store the results in an array and access the list whenever you need a result
-This makes the code O(n) which is more efficient
-
-There are two types of Dynamic Programming
-Memoization and Tabulation
-Memoization is Recursive, but Tabulation is iterative
-
-Visualization for Fibonacci:
-fill an array of n size with all -1
-we don't know what fib(n) is so solve for fib(n-1)
-we don't know what fib(n-1) is so solve for fib(n-2)... fib(n-n)
-we know what fib(0) is, now we can store it and solve fib(1)...fib(n)
-since we have fib(0) stored we never have to call fib(0) again, we can just check if its in the array
-same for fib(1) once we solve it, fib(2), fib(3)...fib(n)
-
-```
-3 steps to DP
-1. Recursion
-2. Store(Memoize)
-3. Bottom-Up (Tabulation)
-```
-```py
-def fib(n):
-  if n == 1 or n == 2:
-    result = 1
-  else:
-    result = fib(n-1) + fib(n-2)
-  return result
-```
-```
-What's the issue with this code?
-We have a lot of repeated calls (fib(2) is called 3 times if n = 5, fib(1) and fib(3) are called twice, etc)
-Our complexity is 2^n
-```
 ```py
 def fib(n, memo): # Memoization
   if memo[n] != null:
@@ -114,6 +90,19 @@ def fib_bottom_up(n): # Tabulation
   return bottom_up[n]
 ```
 
+# Example: __Coin Problem: Minimum Bills__
+In a strange country (Algostan), the currency is available in the following denominations: $1, $4, $7, $13, $28, $52, $91, $365. Find the minimum bills that add up to a given sum $k.
+```py
+function change(k)
+  if k < 0:
+    return infinity
+  if k not in memo:
+    lookup[k] = infinity
+    for coin in coins:
+      lookup[k] = min(change(k - coin), k)+1
+  return lookup[k]
+```
+
 # Addendum
 
 1. Memoization
@@ -127,9 +116,9 @@ Memoization Recipe:
 - Test it
 
 2. Make it efficient
-- add a memo object
-- add a base case to return memo values
-- store return values into the memo
+- Add a memo object
+- Add a base case to return memo values
+- Store return values into the memo
 
 Tabulation Recipe:
 
@@ -216,7 +205,7 @@ Pass 5: we know fib(5) since we know fib(4) and fib(3) so we can add 5 (the valu
 [0, 1, 1, 2, 3, 5, 8]
 ```
 
-# gridTraveler
+## gridTraveler
 
 Write a function gridTraveler, that given a m*n matrix, count how many ways can you traverse from the top left to the bottom right, given you can only move down or right
 
