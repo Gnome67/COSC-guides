@@ -23,9 +23,9 @@ For example: the LIS of [10, 9, 2, 5, 3, 7, 101, 18] is [2, 3, 7, 101]
 
 1. We can create a cache of the length n.
 2. Then iterate through each element in nums from i = 1 to i = n-1.?
-- For each element at index i, iterate through the elements before it, [0... i-1]
+- For each element at index i, iterate through the elements before it, [0... i-1]
   - Check if nums[i] < nums[j]
-  - Check if LIS[j] > LIS[i]
+  - Check if LIS[j] > LIS[i]
     - If true, this results in a longer subsequence
 3. Increment the LIS value at i
 - Return the LIS value.
@@ -45,7 +45,7 @@ function longest_increasing_subsequence(n, nums):
 # Longest Decreasing Subsequences
 
 Follow the same algorithm as the longest increasing subsequence, but this time reverse both iterations.
-- Outer for loop: from n-1 to 0
+- Outer for loop: from n-1 to 0
 - Inner for loop: from n to i + 1
 
 ```py
