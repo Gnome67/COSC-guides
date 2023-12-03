@@ -121,6 +121,119 @@ Breakdown:
 
 Time Complexity: O(Vertices + Edges)
 
-## Course Scheduler (Leetcode 20)
+# Course Scheduler (Leetcode 20)
 
-## Single Source Longest Path
+There are a total of n courses you have to take, labeled from 0 to n - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+- For example, the pair [0,1] indicates that to take course 0 you have to first take course 1.
+
+Return the ordering of courses you should take to finish all courses. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+
+### Solution:
+
+For this problem, we'll first build an adjacency list. For each node we will need to know their prerequisites (neighbors).
+
+List:
+[Node, [Prereqs]]
+1. [1336, []]
+2. [1437, [1336]]
+3. [2436, [1437]]
+4. [2425, [1437]]
+5. [3320, [2436]]
+6. [3360, [2436, 2425]]
+7. [4353, [3320]]
+
+We are then going to run DFS on every single node. As we traverse, we'll need to keep track of two things.
+1. visited neighbors.
+2. Any cycles (reject)
+```
+DAG: [1336] <- [1437] <- [2436] <- [3320] <- [4353]
+                    ^         ^
+                    ^           \
+                    ^ - [2425] <- [3360]
+```
+After we run this DAG through our topological sorting algorithm, we get the resulting ordering:
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/92315e04-1175-49d9-a1c6-8fd07f8349bc)
+
+However, this is not unique.
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/3240835e-6346-4874-9307-aa79f03287dd)
+
+### Pseudocode:
+
+```py
+function plancourse(numCourse, prerequisites):
+  # build an adjacency list prereq from input_ARRAY
+  output = [0, ..., 0]
+  visited = [false, ..., false]
+  cycled = [false, ..., false]
+  # inner dfs function below
+  function dfs(course):
+    if cycled[course]:
+      return false
+    if visited[course]:
+      return true
+    cycled[course] = true # cycled
+    for each class in prereq[course]:
+      if dfs(course) == false:
+        return false
+    cycled[course] = false # not cycled
+    visited[course] = true # visited
+    output/append(course)
+    return true
+  return order
+```
+Breakdown:
+1. Build an adjacency list
+2. Create the arrays: visited, cycled
+3. Declare the inner function for DFS
+- Reject cycles
+- Accept visited courses
+4. For each prerequisite:
+- Recurse (if cyclical, false)
+- Otherwise, unmark the node as cycled
+- Mark as visited and append
+
+# Single Source Longest Path
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/a7baa6d9-8197-4189-8509-268454bc3312)
+
+Given a weighted acrylic directed graph (DAG) with positive integer weights, and two nodes in the graph i, j, find the longest path from node i -> node j.
+For example, the longest path between nodes 0 and 3 is 60.
+
+Algorithm description:
+Topologically sort the graph. To find the longest distance to a node v, recursively determine the longest distance to each of its incoming neighbors.
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/daaa6ad3-0117-4f62-a092-fc93f6b47bb0)
+
+```py
+function single_source_longest_path(start, end, adjacency_list, num_of_vertices):
+  distances = [-1...-1] # size of num_of_vertices
+  distances[start] = 0
+
+  for node in topologcialSort(adjacency_list, num_of_vertices):
+    if distances[node] == -1:
+      continue
+    for neighbor, weight in adjacency_list.get(node);
+      distances[neighbor] = max(distances[neighbor], distances[node] + weight)
+    return distances[end]
+```
+
+Breakdown:
+1. initialize a list of distances to -1
+2. Set distance[start] to 0
+3. Call topological sort with our adjacency list
+4. If distances[node] = -1
+- continue
+5. Otherwise find the max of the incoming distances
+
+Proof of Correctness:
+
+Assume, without loss of generality, that the nodes are in some topological ordering.
+We will show by induction that, when we visit a node v, the longest path to nodes 0, 1, ..., v (from s) have been correctly determined.
+The base case is obvious: the longest path from s to s is 0. (Convince yourself that this is true -- G is a DAG.)
+
+Suppose it is true for all nodes 0, 1, ..., v - 1 (IH).
+Then, for node v, the longest path from s must pass through a node in {0, 1, ... v - 1} (since G is a DAG).
+By our induction hypothesis, the longest path to each of these nodes has already been correctly determined.
+Therefore, the longest path to v has already been determined.
