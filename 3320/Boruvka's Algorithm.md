@@ -30,10 +30,10 @@ while completed == false:
   Initialize the cheapest edge for each component to "None"
   for each edge uv in E, where u and v are in different components of F:
     let wx be the cheapest edge for the component of u
-    if is-preferred-over(uv, wx) then
+    if is_preferred_over(uv, wx) then
       Set uv as the cheapest edge for the component of u
     let yz be the cheapest edge for the component of v
-    if is-preferred-over(uv, yz) then
+    if is_preferred_over(uv, yz) then
       Set uv as the cheapest edge for the component of v
   if all components have cheapest edge set to "None" then
     # no more trees can be merged -- we are finished
@@ -43,10 +43,10 @@ while completed == false:
     for each component whose cheapest edge is not "None" do
       Add its cheapest edge to E'
 
-function is-preferred-over(edge1, edge2):
-  return (edge2 is "None") or (weight(edge1) < weight(edge2)) or (weight(edge1) = weight(edge2) and tie-breaking-rule(edge1, edge2))
+function is_preferred_over(edge1, edge2):
+  return (edge2 is "None") or (weight(edge1) < weight(edge2)) or (weight(edge1) = weight(edge2) and tie_breaking_rule(edge1, edge2))
 
-function tie-breaking-rule(edge1, edge2):
+function tie_breaking_rule(edge1, edge2):
   The tie-breaking rule; returns true if and only if edge1 is preferred over edge2 in the case of a tie.
 ```
 
