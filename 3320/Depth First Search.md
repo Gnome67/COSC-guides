@@ -6,7 +6,7 @@ Like BFS, DFS is an algorithm used for searching all the vertices of a graph whi
 Implementation:
 - Queue: O(Vertices + Edges)
 
-### Recursive Implementation
+# Recursive Implementation
 
 ```py
 function dfs(v):
@@ -16,7 +16,7 @@ function dfs(v):
     dfs(node)
 ```
 
-### Iterative Implementation
+# Iterative Implementation
 
 ```py
 function dfs v:
@@ -32,7 +32,7 @@ function dfs v:
       visited[node]
 ```
 
-### Tracing
+# Tracing
 
 Tracing a graph using DFS is all about going as far ahead as possible and backtracking
 
