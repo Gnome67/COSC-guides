@@ -8,7 +8,7 @@ first line is a single number n
 the following line consists of n numbers that is the array A[1..n]
 
 This problem requires two other important Dynamic Programming Algorithms:
-- Longest Increasing Subsequence (LISC
+- Longest Increasing Subsequence (LISC)
 - Longest Decreasing Subsequence (LDS)
 
 We’ll calculate the longest increasing subsequence for A[0...i]. And then calculate the longest decreasing subsequence for A[i....N].
@@ -21,13 +21,13 @@ A subsequence is a sequence that can be derived from an array by deleting some o
 
 For example: the LIS of [10, 9, 2, 5, 3, 7, 101, 18] is [2, 3, 7, 101]
 
-1. We can create a cache of the length n.?
-2. Then iterate through each element in nums from i = 1 to i = n-1.?
-- For each element at index i, iterate through the elements before it, [0... i-1]
-  - Check if nums[i] < nums[j]?
-  - Check if LIS[j] > LIS[i
-    - If true, this results in a longer subsequence
-3. Increment the LIS value at i
+1. We can create a cache of the length n.
+2. Then iterate through each element in nums from i = 1 to i = n-1.?
+- For each element at index i, iterate through the elements before it, [0... i-1]
+  - Check if nums[i] < nums[j]
+  - Check if LIS[j] > LIS[i]
+    - If true, this results in a longer subsequence
+3. Increment the LIS value at i
 - Return the LIS value.
 
 ```py
