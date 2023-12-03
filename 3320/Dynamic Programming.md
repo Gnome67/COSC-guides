@@ -3,14 +3,26 @@ There are two types of Dynamic Programming:
 - Memoization: Recursive
 - Tabulation: Iterative
 
-Memoization:
+### Memoization:
 - Top-Down approach
 - Check if the value has already been calculated
 - If so, output it, otherwise, calculate and store in a lookup table
 - Save the solutions as you approach your base case
 - Start from the final problem, recursively compute the subproblems when needed
 
-Tabulation
+Memoization Recipe:
+
+1. Make it work
+- Visualize the problem as a tree
+- Implement the tree using recursion
+- Test it
+
+2. Make it efficient
+- Add a memo object
+- Add a base case to return memo values
+- Store return values into the memo
+
+### Tabulation
 - Bottom-Up approach
 - Initialize a table for lookup
 - Determine the execution order of your algorithm (e.g. row by row)
@@ -18,14 +30,23 @@ Tabulation
 - Start from 1, cache each of the results and continue to iterate until we reach n
 - Build towards the solution as you continually compute each subresult
 
+Tabulation Recipe:
+
+- visualize the problem as a table
+- size the table based on the inputs
+- initialize the table with default values
+- seed the trivial answer into the table
+- iterate through the table
+- fill further positions based on the current position
+
 3 steps to DP
 1. Recursion
 2. Store (Memoize)
 3. Bottom-Up (Tabulation)
 
-Example of Naive Solution vs Dynamic Programming
+# Fibonacci
 
-Naive Solution (Time Complexity = O(2^n))
+## Naive Solution (Time Complexity = O(2^n))
 ```py
 function fibonacci(n)
   if n <= 2
@@ -90,44 +111,7 @@ def fib_bottom_up(n): # Tabulation
   return bottom_up[n]
 ```
 
-# Example: __Coin Problem: Minimum Bills__
-In a strange country (Algostan), the currency is available in the following denominations: $1, $4, $7, $13, $28, $52, $91, $365. Find the minimum bills that add up to a given sum $k.
-```py
-function change(k)
-  if k < 0:
-    return infinity
-  if k not in memo:
-    lookup[k] = infinity
-    for coin in coins:
-      lookup[k] = min(change(k - coin), k)+1
-  return lookup[k]
-```
-
-# Addendum
-
-1. Memoization
-2. Tabulation
-
-Memoization Recipe:
-
-1. Make it work
-- Visualize the problem as a tree
-- Implement the tree using recursion
-- Test it
-
-2. Make it efficient
-- Add a memo object
-- Add a base case to return memo values
-- Store return values into the memo
-
-Tabulation Recipe:
-
-- visualize the problem as a table
-- size the table based on the inputs
-- initialize the table with default values
-- seed the trivial answer into the table
-- iterate through the table
-- fill further positions based on the current position
+## Visualization
 
 ```js
 //Naive Solution
@@ -205,7 +189,7 @@ Pass 5: we know fib(5) since we know fib(4) and fib(3) so we can add 5 (the valu
 [0, 1, 1, 2, 3, 5, 8]
 ```
 
-## gridTraveler
+# gridTraveler
 
 Write a function gridTraveler, that given a m*n matrix, count how many ways can you traverse from the top left to the bottom right, given you can only move down or right
 
@@ -288,4 +272,71 @@ const gridTraveler = (m, n) => {
 
   return table[m][n];
 };
+```
+
+# Coin Problem: Minimum Bills
+In a strange country (Algostan), the currency is available in the following denominations: $1, $4, $7, $13, $28, $52, $91, $365. Find the minimum bills that add up to a given sum $k.
+```py
+function change(k)
+  if k < 0:
+    return infinity
+  if k not in memo:
+    lookup[k] = infinity
+    for coin in coins:
+      lookup[k] = min(change(k - coin), k)+1
+  return lookup[k]
+```
+
+# Minimum Palindromes
+Find the minimum number of palindromes that make up the given string
+
+Input format:
+first line is a single number n
+the following line consists of length n string (character array) that is the string A[1..n]
+
+### Bottom Up Solution (Tabulation)
+1. We can approach this problem by creating a lookup table that is the a n x n matrix, where n is the length of the strings
+2. We’ll also keep track of the number of cuts made with an n length array.
+3. Iterate over the string, choosing a starting index and ending index, essentially checking each substring
+4. Check if the substring is a palindrome and marking any palindromes at table[start][end]
+5. Calculate the minimum cuts and store into the array.
+
+## Pseudocode
+
+Declare two arrays:
+1. Lookup table of boolean
+2. Array of the number of cuts
+
+Nested for loop to iterate over the different substrings.
+Check if the characters match one another.
+
+```py
+function minimum_palindromes(length, string):
+  if length == 0:
+    return 0
+  table = n x n array where all elements are false
+  cuts = n length array initiliazed to [0,...0]
+  for start in length:
+    minCut = MAX
+    for end in start+1:
+      bool do_edges_match = string[start] equals string[end]
+    bool is_start_inbounds = start <= end+1
+    if do_edges_match and (is_start_inbounds or table[start-1]end[+1]):
+      table[start][end] = true
+      mincut = min(mincut, 0 if end is 0 else 1 + cuts[end-1])
+    cuts[start] = mincut
+  return cuts[length-1]+1
+```
+
+## Top Down Pseudocode (Memoization)
+```py
+function minimum_palindromes(length, string):
+  # assume there is a local function called is_palindrome(start, end)
+  function min_cut(i):
+  if <= 0:
+    return True
+  else:
+    return minimum of min_cut(j) + 1 for j in i if palindrome(j, i)
+
+  return min_cut(string.length)
 ```
