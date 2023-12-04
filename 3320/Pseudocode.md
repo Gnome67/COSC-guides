@@ -39,7 +39,9 @@ function distance(node, source, destination)
   return totalDestination
 ```
 
-Ex. Median of Two Sorted Arrays
+# Examples
+
+Median of Two Sorted Arrays
 ```py
 function findMedianOfUnion(array A, array B):
   if median of A == median of B:
@@ -52,7 +54,7 @@ function findMedianOfUnion(array A, array B):
     findMedianOfUnion(A[median of A... .N], B[0...median of b])
 ```
 
-Ex. Print all subsets
+Print all subsets
 ```py
 function powersets(index, array, subset, result)
   if index > length of array
