@@ -110,3 +110,57 @@ Solution:
 - s2: "**G**X**T**X**A**Y**B**"
 
 The longest common subsequence is "GTAB" since both strings have a G, a T, an A, and a B in the same order, so we return 4
+
+Visualization:
+
+Make a 2-D table where the rows are one string and the columns are another, which summarize function calls
+```
+   A G G T A B
+ G 0 1 1 1 1 1
+ X 0 1 1 1 1 1
+ T 0 1 1 2 2 2
+ X 0 1 1 2 2 2
+ A 0 1 1 2 3 3
+ Y 0 1 1 2 3 3
+ B 0 1 1 2 3 4
+ ```
+
+We are basically matching the string up to the row we're on to the string up to the column we're on.
+First, we compare "A" (column 1) to "G" (row 1) and see they have nothing in common, so we return 0. 
+We move over one column ("AG"), and we see "AG" (column 1, 2) and "G" (row 1) have 1 thing in common (both have a G) so we return 1.
+"AG" (column 1 and 2), "AGG" (column 1, 2, 3), "AGGT" (column 1, 2, 3, 4), "AGGTA" (column 1, 2, 3, 4, 5), "AGGTAB" (column 1, 2, 3, 4, 5, 6) all have a G in common with "G" so they all return 1.
+"AGGTAB" (all columns) continues to have only 1 thing in common with "GX" (row 1, 2), which is "G" so the entire row of X (row 2) returns 1
+once we reach T, "GXT" (row 1, 2, 3) will only have one thing in common with "AG" and "AGG", which is G.
+However once we reach "AGGT" it will have 2 things in common with "GXT" which is G and T. Since they now share G and T, it is now updated to 2 in the table.
+(Remember subsequences don't have to be contiguous)
+So on and so forth until we reach "AGGTAB" compared to "GXTXAYB" which share "G" "T" "A" "B", so we return 4.
+
+Recursive Solution in C++:
+```cpp
+int LCS(string A, string B, int i, int j)
+{
+  if(A[i] == " " || B[j] == " ")
+  {
+    return 0;
+  }
+  else if (A[i] == B[j])
+    return 1 + LCS(A, B, i+1, j+1);
+  else
+    return max(LCS(i+1, j), LCS(i, j+1));
+}
+```
+
+Dynamic Programming Solution in C++
+```cpp
+void LCS(string A, string B, int i, int j)
+{
+  if(A[i] = B[j])
+  {
+    LCS[i, j] = 1 + LCS[i-1, j-1]
+  }
+  else
+  {
+    LCS[i,j] = max(LCS[i-1,j], LCS[i,j-1])
+  }
+}
+```
