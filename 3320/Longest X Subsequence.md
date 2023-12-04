@@ -126,14 +126,14 @@ Make a 2-D table where the rows are one string and the columns are another, whic
  ```
 
 We are basically matching the string up to the row we're on to the string up to the column we're on.
-First, we compare "A" (column 1) to "G" (row 1) and see they have nothing in common, so we return 0. 
-We move over one column ("AG"), and we see "AG" (column 1, 2) and "G" (row 1) have 1 thing in common (both have a G) so we return 1.
-"AG" (column 1 and 2), "AGG" (column 1, 2, 3), "AGGT" (column 1, 2, 3, 4), "AGGTA" (column 1, 2, 3, 4, 5), "AGGTAB" (column 1, 2, 3, 4, 5, 6) all have a G in common with "G" so they all return 1.
-"AGGTAB" (all columns) continues to have only 1 thing in common with "GX" (row 1, 2), which is "G" so the entire row of X (row 2) returns 1
-once we reach T, "GXT" (row 1, 2, 3) will only have one thing in common with "AG" and "AGG", which is G.
-However once we reach "AGGT" it will have 2 things in common with "GXT" which is G and T. Since they now share G and T, it is now updated to 2 in the table.
-(Remember subsequences don't have to be contiguous)
-So on and so forth until we reach "AGGTAB" compared to "GXTXAYB" which share "G" "T" "A" "B", so we return 4.
+1. First, we compare "A" (column 1) to "G" (row 1) and see they have nothing in common, so we return 0. 
+2. We move over one column ("AG"), and we see "AG" (column 1, 2) and "G" (row 1) have 1 thing in common (both have a G) so we return 1.
+3. "AG" (column 1 and 2), "AGG" (column 1, 2, 3), "AGGT" (column 1, 2, 3, 4), "AGGTA" (column 1, 2, 3, 4, 5), "AGGTAB" (column 1, 2, 3, 4, 5, 6) all have a G in common with "G" so they all return 1.
+4. "AGGTAB" (all columns) continues to have only 1 thing in common with "GX" (row 1, 2), which is "G" so the entire row of X (row 2) returns 1
+5. Once we reach T, "GXT" (row 1, 2, 3) will only have one thing in common with "AG" and "AGG", which is G.
+6. However once we reach "AGGT" it will have 2 things in common with "GXT" which is G and T. Since they now share G and T, it is now updated to 2 in the table.
+- (Remember subsequences don't have to be contiguous)
+7. So on and so forth until we reach "AGGTAB" compared to "GXTXAYB" which share "G" "T" "A" "B", so we return 4.
 
 Recursive Solution in C++:
 ```cpp
