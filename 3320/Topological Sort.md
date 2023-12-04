@@ -45,7 +45,7 @@ function dfs(v, visited, ordering, G):
 ![image](https://github.com/Gnome67/COSC-guides/assets/102388813/6d8427a0-49c6-494e-b872-142e935f3bf6)
 
 Topological Sort List: [?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?]
-0
+
 ***NOTE: TOPOLOGICAL SORTS ARE NOT UNIQUE. THIS GRAPH HAS MANY SOLUTIONS. YOU ARE NOT WRONG IF YOU END UP WITH A DIFFERENT ORDERING THAN ME***
 
 - Let's pick node H arbritrarily. Let's take path H -> J to begin with, and explore down that route.
