@@ -3,6 +3,7 @@ A BFS is an algorithm for searching all vertices of a graph or tree data structu
 As you traverse, nodes are categorized as:
 1. Visited
 2. Unvisited
+
 The algorithm uses a queue to traverse in a level order traversal.
 
 Implementation:
