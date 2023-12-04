@@ -96,8 +96,8 @@ Example:
 - s2: "AEDFHR"
 
 Solution:
-- s1: "__A__BC__D__G__H__"
-- s2: "__A__E__D__F__H__R"
+- s1: "**A**BC**D**G**H**"
+- s2: "**A**E**D**F**H**R"
 
 The longest common subsequence is "ADH" since both strings have an A, a D, and a H in the same order, so we return 3
 
@@ -106,7 +106,7 @@ Example:
 - s2: "GXTXAYB"
 
 Solution:
-- s1: "AG__GTAB__"
-- s2: "__G__X__T__X__A__Y__B__"
+- s1: "AG**GTAB**"
+- s2: "**G**X**T**X**A**Y**B**"
 
 The longest common subsequence is "GTAB" since both strings have a G, a T, an A, and a B in the same order, so we return 4
