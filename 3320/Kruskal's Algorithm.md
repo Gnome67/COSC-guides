@@ -64,3 +64,27 @@ Minimality
 - However since T is a minimum spanning tree then this new graph has the same weight as T, otherwise we get a contradiction and T would not be a minimum spanning tree
 - So T − f + e is a minimum spanning tree containing F + e and again P holds.
 - Therefore, by the principle of induction, P holds when F has become a spanning tree, which is only possible if F is a minimum spanning tree itself
+
+# Python Code
+
+Provided by Michael Sambol
+```py
+from unionfind import unionfind
+
+def kruskals(G):
+    total_cost = 0
+    MST = []
+
+    num_nodes, edges = load_edges(G)
+    uf = unionfind(num_nodes)
+
+    for edge in edges:
+        cost, n1, n2 = edge[0], edge[1], edge[2]
+
+        if not uf.issame(conv_char(n1), conv_char(n2)):
+            total_cost += cost
+            uf.unite(conv_char(n1), conv_char(n2))
+            MST.append((n1, n2, cost))
+
+    return MST, total_cost
+```
