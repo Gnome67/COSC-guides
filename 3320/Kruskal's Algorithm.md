@@ -1,3 +1,9 @@
+# Time Complexity
+
+O(Edge-log-Edge)
+
+# Description
+
 Kruskal's algorithm finds a minimum spanning forest of an undirected edge-weighted graph. If the graph is connected, it finds a minimum spanning tree. It is a greedy algorithm that in each step adds to the forest the lowest-weight edge that will not form a cycle. The key steps of the algorithm are sorting and the use of a disjoint-set data structure to detect cycles. Its running time is dominated by the time to sort all of the graph edges by their weight.
 
 A minimum spanning tree of a connected weighted graph is a connected subgraph, without cycles, for which the sum of the weights of all the edges in the subgraph. For a disconnected graph, a minimum spanning forest is composed of a minimum spanning tree for each connected component.
@@ -6,23 +12,32 @@ A minimum spanning tree of a connected weighted graph is a connected subgraph, w
 
 In Kruskal’s algorithm, sort all edges of the given graph in increasing order. Then it keeps on adding new edges and nodes in the MST if the newly added edge does not form a cycle. It picks the minimum weighted edge at first and the maximum weighted edge at last. Thus we can say that it makes a locally optimal choice in each step in order to find the optimal solution.
 
-Simple:
-
 1. Sort all the edges in non-decreasing order of their weight. 
 2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far. If the cycle is not formed, include this edge. Else, discard it. 
-3. Repeat step#2 until there are (V-1) edges in the spanning tree.
+3. Repeat step 2 until there are (V-1) edges in the spanning tree.
 
-Detailed:
+# Visualization
 
-The algorithm performs the following steps:
-1. Create a forest (a set of trees) initially consisting of a separate single-vertex tree for each vertex in the input graph.
-2. Sort the graph edges by weight.
-3. Loop through the edges of the graph, in ascending sorted order by their weight. For each edge:
-- Test whether adding the edge to the current forest would create a cycle
-- If not, add the edge to the forest, combining two trees into a single tree
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/54764c50-46da-43a5-8d7a-ae5a3d86be5c)
 
-At the termination of the algorithm, the forest forms a minimum spanning forest of the graph. If the graph is connected, the forest has a single component and forms a minimum spanning tree.
-Kruskal’s algorithm to find the minimum cost spanning tree uses the greedy approach. The Greedy Choice is to pick the smallest weight edge that does not cause a cycle in the MST constructed so far.
+1. Pick the smallest edge. In this case, it is C -> E, with an edge weight of 1.
+- visited: {C, E}
+- cost: 1
+2. We repeatedly look for the smallest edges that don't create a cycle. A -> B is the next smallest edge weight, with a size of 2
+- visited: {C, E, A, B}
+- cost: 3
+3. There are three edges with a weight of 3. You can choose any of them, but I will choose A -> D.
+- visited: {C, E, A, B, D}
+- cost: 6
+4. Let's connect our two minimum spanning trees using route A -> C
+- visited: {C, E, A, B, D}
+- cost: 9
+5. B -> E is now the smallest unique route we have not taken, but it will connect two nodes that have already been visited. We will skip this and move on to D -> F, with a weight of 7.
+- visited: {C, E, A, B, D, F}
+- cost: 16
+6. Finally, pick F -> G
+- visited: {C, E, A, B, D, F, G}
+- cost: 25
 
 # Pseudocode
 
@@ -40,6 +55,9 @@ function kruskal(G):
 ```
 
 ![image](https://github.com/Gnome67/COSC-guides/assets/102388813/d2df87e2-463f-4877-bb44-205d32b492c0)
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/b2ac33b6-c4d4-4336-94f7-4622c8569d4b)
+
 
 # Proof:
 
