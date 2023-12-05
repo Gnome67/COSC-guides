@@ -91,7 +91,6 @@ def bfs(graph, node):
     queue.append(node)
 
     while queue:
-        # popleft is O(1). for an array, pop(0) is O(n). hence the change to deque from array.
         s = queue.popleft()
         print(s, end = " ")
 
