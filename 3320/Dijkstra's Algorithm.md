@@ -1,3 +1,9 @@
+# Time Complexity
+
+- Fibonacci Heap: O(|Edges| + |Vertices|log|Vertices|)
+
+# Description
+
 The idea is to generate a SPT (shortest path tree) with a given source as a root. Maintain an Adjacency Matrix with two sets, 
 - one set contains vertices included in the shortest-path tree, 
 - other set includes vertices not yet included in the shortest-path tree. 
@@ -13,8 +19,44 @@ At every step of the algorithm, find a vertex that is in the other set (set not 
     - To update the distance values, iterate through all adjacent vertices. 
     - For every adjacent vertex v, if the sum of the distance value of u (from source) and weight of edge u-v, is less than the distance value of v, then update the distance value of v. 
 
+# Visualization
 
-Explanation:
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/d443df48-2739-4fc6-b6bf-8eca22dfb9f6)
+
+1. We are going to keep track of the unvisited nodes.
+- unvisited: {A, B, C, D, E}
+2. We are going to choose an arbitrary node A
+- unvisited: {B, C, D, E}
+- visited: {A}
+3. Even though we know the weights of the routes from A, we will notarize them as infinity as such:
+- unvisited: {B: inf, C: inf, D: inf, E: inf}
+4. Let's update the unvisited table with the weights of all the nodes that can be directly reached by A in one trip.
+- unvisited: {B: 4, C: 2, D: inf, E: inf}
+5. Let's pick the smallest node we can reach. C's 2 is less than B's 4, which is less than D and E's infinity, so let's pick C.
+- unvisited: {B: 4, ~~C: 2~~, D: inf, E: inf}
+- visited: {A, C}
+- cost: 2
+6. We notice that B can be reached by A and C. A -> B is a cost of 4, while A -> C -> B is a cost of 2 + 1 = 3, so let's update our unvisited chart to reflect this
+- unvisited: {B: 3, C: 2, D: inf, E: inf}
+7. C can also reach E and D, so let's update the table. We are going to add 2 to D and E since to reach D and E from A, we need to travel through C
+- unvisited: {B: 3, ~~C: 2,~~ D: 6, E: 7}
+8. Now let's visit B from A -> C
+- unvisited: {~~B: 4, C: 2,~~ D: 6, E: 7}
+- visited: {A, C, B}
+- cost: 3
+9. B can also visit D and E, so let's compare the costs of going from A -> C -> D / E compared to A -> C -> B -> D / E
+- unvisited: {~~B: 4, C: 2,~~ D: 5, E: 6}
+10. As we can see, it's cheaper to go through A -> C -> B -> D / E, than to go A -> C -> D / E
+11. Now that D is the cheapest, let's choose D
+- unvisited: {~~B: 4, C: 2, D: 5,~~ E: 6}
+- visited: {A, C, B, D}
+- cost: 5
+12. Finally, take B -> E
+- unvisited: {~~B: 4, C: 2, D: 5, E: 6~~}
+- visited: {A, C, B, D, E}
+- cost: 8
+
+# Explanation:
 
 Suppose you would like to find the shortest path between two vertexs on a city graph: a starting point and a destination.
 
@@ -134,6 +176,8 @@ function dijkstra(graph, source):
 Now sequence S is the list of vertices constituting one of the shortest paths from source to target, or the empty sequence if no path exists.
 
 A more general problem would be to find all the shortest paths between source and target (there might be several different ones of the same length). Then instead of storing only a single node in each entry of prev[] we would store all nodes satisfying the relaxation condition. For example, if both r and source connect to target and both of them lie on different shortest paths through target (because the edge cost is the same in both cases), then we would add both r and source to prev[target]. When the algorithm completes, prev[] data structure will actually describe a graph that is a subset of the original graph with some edges removed. Its key property will be that if the algorithm was run with some starting node, then every path from that node to any other node in the new graph will be the shortest path between those nodes in the original graph, and all paths of that length from the original graph will be present in the new graph. Then to actually find all these shortest paths between two given nodes we would use a path finding algorithm on the new graph, such as depth-first search. 
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/ca7f3f21-3605-4243-819a-15a293a606bf)
 
 # Proof
 
