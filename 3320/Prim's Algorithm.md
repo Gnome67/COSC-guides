@@ -65,3 +65,45 @@ The idea of using key values is to pick the minimum weight edge from the cut. Th
 - Therefore it is also a minimum spanning tree of graph P and it contains edge e and all the edges added before it during the construction of set V
 - Repeat the steps above and we will eventually obtain a minimum spanning tree of graph P that is identical to tree Y
 - This shows Y is a minimum spanning tree. The minimum spanning tree allows for the first subset of the sub-region to be expanded into a smaller subset X, which we assume to be the minimum
+
+# Python Code
+
+Provided by Michael Sambol
+
+```py
+import heapq
+
+def prims(G, start='A'):
+    unvisited = list(G.keys())
+    visited = []
+    total_cost = 0
+    MST = []
+
+    unvisited.remove(start)
+    visited.append(start)
+
+    heap = G[start]
+    heapq.heapify(heap)
+
+    while unvisited:
+        (cost, n2, n1) = heapq.heappop(heap)
+        new_node = None
+
+        if n1 in unvisited and n2 in visited:
+            new_node = n1
+            MST.append((n2, n1, cost))
+
+        elif n1 in visited and n2 in unvisited:
+            new_node = n2
+            MST.append((n1, n2, cost))
+
+        if new_node != None:
+            unvisited.remove(new_node)
+            visited.append(new_node)
+            total_cost += cost
+
+            for node in G[new_node]:
+                heapq.heappush(heap, node)
+
+    return MST, total_cost
+```
