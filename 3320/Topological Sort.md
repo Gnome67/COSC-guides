@@ -365,7 +365,9 @@ Breakdown:
 You are given a list of strings `words` from a dictionary where the strings in `words` are sorted lexicographically. Return a string of the unique letters sorted in lexicographically increasing order. If there is no solution, return "". If there are multiple solutions, return any of them.
 
 Example:
+
 Input: words = ["wrt", "wrtf", "er", "ett", "rftt"]
+
 Output: "wertf"
 
 ```py
