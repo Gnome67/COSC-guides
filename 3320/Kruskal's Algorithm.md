@@ -39,6 +39,10 @@ In Kruskal’s algorithm, sort all edges of the given graph in increasing order.
 - visited: {C, E, A, B, D, F, G}
 - cost: 25
 
+Here is another example of a visualization of Kruskal's
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/d2df87e2-463f-4877-bb44-205d32b492c0)
+
 # Pseudocode
 
 The following code is implemented with a disjoint-set data structure. It represents the forest F as a set of undirected edges, and uses the disjoint-set data structure to efficiently determine whether two vertices are part of the same tree.
@@ -53,8 +57,6 @@ function kruskal(G):
       union(FIND_SET(u)
   return F
 ```
-
-![image](https://github.com/Gnome67/COSC-guides/assets/102388813/d2df87e2-463f-4877-bb44-205d32b492c0)
 
 ![image](https://github.com/Gnome67/COSC-guides/assets/102388813/b2ac33b6-c4d4-4336-94f7-4622c8569d4b)
 
