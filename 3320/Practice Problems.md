@@ -2,10 +2,10 @@
 
 Solve the following recurrences by finding a Big-Theta form for T (n). Justify your work. You may assume the existence of base cases T (0) = T (1) = 1. You may use the master theorem if applicable, or mathematical induction.
 
-T(n) = T(n/2) + 5
-T(n) = 7T(n/2) + 10n^2
-T(n) = 2T(n - 1) + 1
-T(n) = 2T(n/8) + sqrt(n)
+- T(n) = T(n/2) + 5
+- T(n) = 7T(n/2) + 10n^2
+- T(n) = 2T(n - 1) + 1
+- T(n) = 2T(n/8) + sqrt(n)
 
 # Problem 2: Divide & Conquer
 
