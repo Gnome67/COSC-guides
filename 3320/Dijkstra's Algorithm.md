@@ -17,22 +17,39 @@ At every step of the algorithm, find a vertex that is in the other set (set not 
 Explanation:
 
 Suppose you would like to find the shortest path between two vertexs on a city graph: a starting point and a destination.
+
 Dijkstra's algorithm initially marks the distance (from the starting point) to every other vertex on the graph with infinity.
+
 This is done not to imply that there is an infinite distance, but to note that those vertexs have not been visited yet. Some variants of this method leave the vertexs' distances unlabeled.
+
 Now select the current vertex at each iteration.
+
 For the first iteration, the current vertex will be the starting point, and the distance to it (the vertex's label) will be zero.
+
 For subsequent iterations (after the first), the current vertex will be a closest unvisited vertex to the starting point (this will be easy to find).
+
 From the current vertex, update the distance to every unvisited vertex that is directly connected to it.
+
 This is done by determining the sum of the distance between an unvisited vertex and the value of the current vertex and then relabeling the unvisited vertex with this value (the sum) if it is less than the unvisited vertex's current value.
+
 In effect, the vertex is relabeled if the path to it through the current vertex is shorter than the previously known paths.
+
 To facilitate shortest path identification, in pencil, mark the edge with an arrow pointing to the relabeled vertex if you label/relabel it, and erase all others pointing to it.
+
 After you have updated the distances to each neighboring vertex, mark the current vertex as visited and select an unvisited vertex with minimal distance (from the starting point) – or the lowest label—as the current vertex.
+
 Vertexes marked as visited are labeled with the shortest path from the starting point to it and will not be revisited or returned to.
+
 Continue this process of updating the neighboring vertexs with the shortest distances, marking the current vertex as visited, and moving onto a closest unvisited vertex until you have marked the destination as visited.
+
 Once you have marked the destination as visited (as is the case with any visited vertex), you have determined the shortest path to it from the starting point and can trace your way back following the arrows in reverse.
+
 In the algorithm's implementations, this is usually done (after the algorithm has reached the destination node) by following the nodes' parents from the destination node up to the starting node; that's why we also keep track of each node's parent.
+
 This algorithm makes no attempt of direct "exploration" towards the destination as one might expect. Rather, the sole consideration in determining the next "current" vertex is its distance from the starting point.
+
 This algorithm therefore expands outward from the starting point, interactively considering every node that is closer in terms of shortest path distance until it reaches the destination.
+
 When understood in this way, it is clear how the algorithm necessarily finds the shortest path. However, it may also reveal one of the algorithm's weaknesses: its relative slowness in some topologies. 
 
 # Algorithm
@@ -121,18 +138,33 @@ A more general problem would be to find all the shortest paths between source an
 # Proof
 
 Proof of Dijkstra's algorithm is constructed by induction on the number of visited nodes.
+
 Invariant hypothesis: For each visited node v, dist[v] is the shortest distance from source to v, and for each unvisited node u, dist[u] is the shortest distance from source to u when traveling via visited nodes only, or infinity if no such path exists.
+
 (Note: we do not assume dist[u] is the actual shortest distance for unvisited nodes, while dist[v] is the actual shortest distance)
+
 The base case is when there is just one visited node, namely the initial node source, in which case the hypothesis is trivial.
+
 Next, assume the hypothesis for k-1 visited nodes. Next, we choose u to be the next visited node according to the algorithm. We claim that dist[u] is the shortest distance from source to u.
+
 To prove that claim, we will proceed with a proof by contradiction. If there were a shorter path, then there can be two cases, either the shortest path contains another unvisited node or not.
+
 In the first case, let w be the first unvisited node on the shortest path.
+
 By the induction hypothesis, the shortest path from source to u and w through visited node only has cost dist[u] and dist[w] respectively.
+
 That means the cost of going from source to u through w has the cost of at least dist[w] + the minimal cost of going from w to u. As the edge costs are positive, the minimal cost of going from w to u is a positive number.
+
 Also dist[u] < dist[w] because the algorithm picked u instead of w.
+
 Now we arrived at a contradiction that dist[u] < dist[w] yet dist[w] + a positive number < dist[u].
+
 In the second case, let w be the last but one node on the shortest path. That means dist[w] + Graph.Edges[w,u] < dist[u].
+
 That is a contradiction because by the time w is visited, it should have set dist[u] to at most dist[w] + Graph.Edges[w,u].
+
 For all other visited nodes v, the induction hypothesis told us dist[v] is the shortest distance from source already, and the algorithm step is not changing that.
+
 After processing u it will still be true that for each unvisited node w, dist[w] will be the shortest distance from source to w using visited nodes only because if there were a shorter path that doesn't go by u we would have found it previously, and if there were a shorter path using u we would have updated it when processing u.
+
 After all nodes are visited, the shortest path from source to any node v consists only of visited nodes, therefore dist[v] is the shortest distance.
