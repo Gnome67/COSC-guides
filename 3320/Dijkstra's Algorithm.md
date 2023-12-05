@@ -168,3 +168,41 @@ For all other visited nodes v, the induction hypothesis told us dist[v] is the s
 After processing u it will still be true that for each unvisited node w, dist[w] will be the shortest distance from source to w using visited nodes only because if there were a shorter path that doesn't go by u we would have found it previously, and if there were a shorter path using u we would have updated it when processing u.
 
 After all nodes are visited, the shortest path from source to any node v consists only of visited nodes, therefore dist[v] is the shortest distance.
+
+# Python Code
+
+Provided by Michael Sambol
+
+```py
+import heapq
+
+infinity = float("inf")
+
+def dijkstras_heap(G, start='A'):
+    shortest_paths = {} 
+    visited = {}
+    heap = []
+
+    for node in list(G.keys()):
+        shortest_paths[node] = infinity
+        visited[node] = False
+
+    shortest_paths[start] = 0 
+    visited[start] = True
+
+    heapq.heappush(heap, (0, start))
+
+    while heap:
+        (distance, node) = heapq.heappop(heap)
+        visited[node] = True
+
+        for edge in G[node]:
+            cost = edge[0]
+            to_node = edge[1]
+
+            if (not visited[to_node]) and (distance + cost < shortest_paths[to_node]):
+                shortest_paths[to_node] = distance + cost
+                heapq.heappush(heap, (shortest_paths[to_node], to_node))
+
+    return shortest_paths
+```
