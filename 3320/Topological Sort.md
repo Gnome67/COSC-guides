@@ -169,12 +169,24 @@ Let's add the values that have 0 dependencies to the queue
 - Queue: (if you chose 0) {2, 10, 1}
 - Queue: (if you chose 9) {2}
 - Note: for sanity, going to remove the 9-start queue
-- Now add the next values in the queue (which should be 2) and remove it from the graph accordingly
-- 0: [13, 0, 9, 3, 2, ?, ?, ?, ?, ?, ?, ?, ?, ?]
+- Now add the next values in the queue and remove them from the graph accordingly
+- [13, 0, 9, 3, 2, ?, ?, ?, ?, ?, ?, ?, ?, ?]
+- Update the dependency list
 
-Before we add 1 to the sort, let's update dependencies
+4. 2
+5. 1
+6. 1
+7. 1
+8. 2
+11. 1
+12. 2
 
-4. 1
+- Update the queue
+- Queue: {1}
+- [13, 0, 9, 3, 2, 10, ?, ?, ?, ?, ?, ?, ?, ?]
+- Update the dependency list
+
+4. 2
 5. 1
 6. 0
 7. 1
@@ -182,9 +194,98 @@ Before we add 1 to the sort, let's update dependencies
 11. 1
 12. 2
 
-And add 6 to the queue
-- Queue: {10, 1, 6}
+- Update the queue
+- Queue: {1, 6}
+- [13, 0, 9, 3, 2, 10, 1, ?, ?, ?, ?, ?, ?, ?]
+- Update the dependency list
 
+4. 1
+5. 1
+7. 1
+8. 2
+11. 1
+12. 2
+
+- Update the queue
+- Queue: {6}
+- [13, 0, 9, 3, 2, 10, 1, 6, ?, ?, ?, ?, ?, ?]
+- Update the dependency list
+
+4. 1
+5. 1
+7. 0
+8. 2
+11. 0
+12. 2
+
+- Update the queue
+- Queue: {7, 11}
+- [13, 0, 9, 3, 2, 10, 1, 6, 7, ?, ?, ?, ?, ?]
+- Update the dependency list
+
+4. 0
+5. 1
+8. 2
+12. 1
+
+- Update the queue
+- Queue: {11, 4}
+- [13, 0, 9, 3, 2, 10, 1, 6, 7, 11, ?, ?, ?, ?]
+- Update the dependency list
+
+5. 1
+8. 2
+12. 0
+
+- Update the queue
+- Queue: {4, 12}
+- [13, 0, 9, 3, 2, 10, 1, 6, 7, 11, 4, ?, ?, ?]
+- Update the dependency list
+
+5. 0
+8. 1
+
+- Update the queue
+- Queue: {12, 5}
+- [13, 0, 9, 3, 2, 10, 1, 6, 7, 11, 4, 12, ?, ?]
+- Update the dependency list
+
+8. 0
+
+- Update the queue
+- Queue: {5, 8}
+- [13, 0, 9, 3, 2, 10, 1, 6, 7, 11, 4, 12, 5, ?]
+- [13, 0, 9, 3, 2, 10, 1, 6, 7, 11, 4, 12, 5, 8]
+
+### Pseudocode
+
+```py
+# 'g' is a directed acyclic graph represented as an adjacency list
+function FindTopologicalOrdering(g):
+  n = g.size();
+  in_degree = [0, 0, ..., 0, 0] # size n
+  for (i = 0; i < n; i++):
+    for (to in g[i]):
+      in_degree[to] = in_degree[to] + 1
+# 'q' always contains the set nodes with no incoming edges.
+q = ... # empty integer queue data structure
+for (i = 0; i < n; i++):
+  if (in_degree[i] == 0):
+    q.enqueue(i)
+
+index = 0
+order = [0,0,...0,0] # size n
+while (!q.isEmpty()):
+  at = q.dequeue()
+  order[index++] = at
+  for (to in g[at])
+  in_degree[tp] = in_degree[to] - 1
+  if in_degree[to] == 0:
+    q.enqueue(to)
+if index != n:
+  return null # Graph is Cyclic
+return order
+```
 
 # Course Scheduler (Leetcode 20)
 
