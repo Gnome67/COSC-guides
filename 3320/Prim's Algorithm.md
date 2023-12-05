@@ -1,3 +1,10 @@
+# Time Complexity
+
+- Adjacency Matrix Searching: O(Vertices^2)
+- Binary Heap & Adjacency List: O(Vertices-log-Vertices + Edges-log-Vertices)
+
+# Description
+
 Prim's algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph.
 
 This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized.
@@ -53,6 +60,10 @@ Follow the given steps to utilize the Prim’s Algorithm mentioned above for fin
 
 The idea of using key values is to pick the minimum weight edge from the cut. The key values are used only for vertices that are not yet included in MST, the key value for these vertices indicates the minimum weight edges connecting them to the set of vertices included in MST.
 
+# Pseudocode
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/9adfba56-15c2-422e-ab21-00871e6fd5e1)
+
 # Proof
 
 - Let P be a connected, weighted graph
@@ -70,6 +81,51 @@ The idea of using key values is to pick the minimum weight edge from the cut. Th
 - Therefore it is also a minimum spanning tree of graph P and it contains edge e and all the edges added before it during the construction of set V
 - Repeat the steps above and we will eventually obtain a minimum spanning tree of graph P that is identical to tree Y
 - This shows Y is a minimum spanning tree. The minimum spanning tree allows for the first subset of the sub-region to be expanded into a smaller subset X, which we assume to be the minimum
+
+# Visualization
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/371e12d0-c5c5-4304-b6e5-4694d7b7d4d9)
+
+1. Pick an arbitrary node (for this example, we'll start with A. We'll add A to our visited list
+- visited: {A}
+2. Let's look at all possible edges reachable from A
+- B: 2 away from A
+- C: 3 away from A
+- D: 3 away from A
+3. Prim's is a greedy algorithm, so we will take route A -> B.
+- visited: {A, B}
+- cost: 2
+4. Let's look at all possible edges reachable from A or B
+- C: 3 away from A, 4 away from B
+- D: 3 away from A
+- E: 3 waay from B
+5. Let's pick route A -> C
+- visited: {A, B, C}
+- cost: 5
+6. Let's look at all possible edges reachable from A or B or C
+- D: 3 away from A, 5 away from C
+- E: 1 away from C, 3 away from B
+- F: 6 away from F
+7. Let's take route C -> E
+- visited: {A, B, C, E}
+- cost: 6
+8. Let's look at all possible edges reachable from A or B or C or E
+- D: 3 away from A, 5 away from C
+- F: 6 away from C, 8 away from E
+9. Let's take route A -> D
+- visited: {A, B, C, E, D}
+- cost: 9
+10. At this point, B -> E is the smallest unique route in the graph that has not been taken. However, B and E are both visited, so we will skip this.
+11. Let's look at all the possible routes reachable from A or B or C or E or D
+- F: 6 away from C, 7 away from D, 8 away from E
+12. Let's take route C -> F
+- visited: {A, B, C, E, D, F}
+- cost: 15
+13. Finally, take route F -> G
+- visited: {A, B, C, E, D, F, G}
+- cost: 24
+
+***NOTE: This MST ordering is not the only solution due to duplicate weights for routes. If every route had a unique weight, there would be only one solution.***
 
 # Python Code
 
