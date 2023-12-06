@@ -55,24 +55,24 @@ The algorithm begins by finding the minimum-weight edge incident to each vertex 
 - unvisited: {}
 - visited: {A, B, C, D} {E, F} {G, I, H}
 - cost: {7} {2} {3}
-11. We've found every route we can in this iteration. In the next iteration, we will focus on connecting the 3 disconnected sets, is B -> F, with a cost of 3. Let's update our table.
-- unvisited: {}
-- visited: {A, B, C, D, E, F} {G, I, H}
-- cost: {9} {3}
-12. And E -> H is our final connection
-- unvisited: {}
-- visited: {A, B, C, D, E, F, G, I, H}
-- cost: 12
-13. Here's what the final MST should look like
-
-![image](https://github.com/Gnome67/COSC-guides/assets/102388813/93548502-e143-4ff8-9d78-e01b8de45ed1)
+11. We've found every route we can in this iteration. In the next iteration, we will focus on connecting the 3 disconnected sets.
 
 ### Iteration 2
 
 ![image](https://github.com/Gnome67/COSC-guides/assets/102388813/6645abb8-69dd-47fb-aa08-686e25a707e2)
 
 12. We have 3 unconnected sets, {A, B, C, D}, {E, F}, {G, I, H}. Let's try to connect them.
-13. The smallest route we can take to connect any of these 3 sets,
+13. The smallest route we can take to connect any of these 3 sets, is B -> F, with a cost of 3. Let's update our table.
+- unvisited: {}
+- visited: {A, B, C, D, E, F} {G, I, H}
+- cost: {9} {3}
+14. And E -> H is our final connection
+- unvisited: {}
+- visited: {A, B, C, D, E, F, G, I, H}
+- cost: 12
+15. Here's what the final MST should look like
+
+![image](https://github.com/Gnome67/COSC-guides/assets/102388813/93548502-e143-4ff8-9d78-e01b8de45ed1)
 
 # Pseudocode
 
