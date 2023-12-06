@@ -31,58 +31,6 @@ When we applt BFS from starting node R, we have two neighbors.
 After applying the resulting breadth first spanning tree is:
 R -> S -> U -> T -> V -> Z -> X - > W -> Y
 
-# Strongly Connected Components
-
-In a directed graph, a strongly connected component is a set of nodes in which every pair of nodes can reach each other. And you can't add any more nodes without ruining it's strong connection.
-In other words, a strongly connected component is a portion of a directed graph in which there is a path from each vertex to another.
-
-**Note: Strong Connectivity does not apply to undirected graphs.**
-
-Notice what makes each of these compoents strongly connected.
-- There's a cycle (**Note: Cycle != SCC**)
-- Through this cycle, each node can reach the others through a directed path.
-- Node 7 is an example of a sink, a vertex with no outgoing edges.
-```
-0 -> 1       5
-v    v     /^ \v
-3 <- 4 -> 4 <- 6 -> 7
-```
-```
-0 -> 1
-^   v
- \  v
-  \ v        > 4 <- 7
-    2 - > 3 /  v    ^
-               5 -> 6
-```
-
-### Kosaraju's Algorithm
-
-- DFS-based algorithm used to find strongly connected components in a graph.
-- Do a DFS on the original graph. When a node finished push the node onto a stack.
-- Let G_r be the graph with same graph with edges reveresed.
-- Do a DFS on G_R in the reverse order of the stack.
-
-Pseudocode:
-```py
-# DFS is modified to where when DFS returns the node, it is pushed onto a stack
-function kosaraju():
-  // stack has already been initialized
-  dfs(G)
-  G_r = reversed(G)
-  components = []
-  for node in reversed(stack):
-    new_component = []
-    if node not visited:
-      append node to new_component
-      dfs(node)
-    append new_component to components
-```
-Breakdown:
-- Call DFS on a graph to determine finish times (same as the stack).
-- In reverse order of finish times, do dfs on the reversed graph.
-- When DFS returns, all the processed nodes will belong to the same SCC.
-
 # Single Source Longest Path
 
 ![image](https://github.com/Gnome67/COSC-guides/assets/102388813/a7baa6d9-8197-4189-8509-268454bc3312)
