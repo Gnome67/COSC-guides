@@ -587,7 +587,7 @@ void Graph::longestPath(int s)
       dist[i] = NINF; // Initialize distances to all vertices as infinite and distance to source as 0 
   dist[s] = 0;  
   while (Stack.empty() == false) { // Process vertices in topological order 
-    int u = Stack.top();          // Get the next vertex from topological order 
+    int u = Stack.top();           // Get the next vertex from topological order 
     Stack.pop(); 
  
 // Update distances of all adjacent vertices 
