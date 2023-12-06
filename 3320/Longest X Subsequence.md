@@ -152,15 +152,16 @@ int LCS(string A, string B, int i, int j)
 
 Dynamic Programming Solution in C++
 ```cpp
-void LCS(string A, string B, int i, int j)
+int LCS(string A, string B, int i, int j)
 {
   if(A[i] = B[j])
   {
-    LCS[i, j] = 1 + LCS[i-1, j-1]
+    LCS[i, j] = 1 + LCS[i-1, j-1];
   }
   else
   {
-    LCS[i,j] = max(LCS[i-1,j], LCS[i,j-1])
+    LCS[i,j] = max(LCS[i-1,j], LCS[i,j-1]);
   }
+  return LCS[i][j];
 }
 ```
