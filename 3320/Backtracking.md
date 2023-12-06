@@ -23,7 +23,6 @@ We can experiment with BACKTRACKing to place queens down, and remove them if we 
 Choices: Where to place a queen
 Constraint: We can't place a queen on a spot where another queen can move to
 Goal: place n queens
-```
 ```java
 private static void solveNQueens(int n, int row, list<integer> colPlacements, list<list<integer>> result)
 {
