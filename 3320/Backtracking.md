@@ -17,10 +17,6 @@ Check the next row or column while iterating
 
 if we make an error, BACKTRACK, otherwise keep going on
 
-he didnt provide code lol
-
-basically bruteforce recursion
-
 # Example: N Queens
 
 Write a program that returns all distinct non-attacking placements of n queens on a nxn chessboard. N is an input.
