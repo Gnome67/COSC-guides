@@ -1,15 +1,22 @@
 Choices = you have choices you can make
+
 Constraints = however you have constraints on what choices you can make
+
 Goals = use your choices to reach your goal
 
 Ex. Sudoku Board
 Choices: a number from 0 - 9
+
 Constraints: You can not repeat a number in the row and/or column
+
 Goal: Solve the sudoku board
 
 Break it down to a single row or column
+
 Check the next row or column while iterating
+
 if we make an error, BACKTRACK, otherwise keep going on
+
 he didnt provide code lol
 
 basically bruteforce recursion
