@@ -23,12 +23,10 @@ Divide and Conquer (int p):
 
 # Divide and Conquer
 
-Split the problem into two subproblmes
+Split the problem into two subproblems
 Split the two subproblems into two subproblems
 etc. until you reach n (where n is the smallest subproblem possible)
 Then solve 2 n, merge together, and work your way back up
-
-# Divide & Conquer
 
 Basically explains why merge sort is O(n*log(n))
 n* is because there are n leaves for an array of size n
@@ -41,8 +39,6 @@ e.g. if n is 8 [1,4,5,6,7,8,2,3] there will be 3 sublevels:
 
 notice how the size of each subarray is the previous array / 2. and notice how theres 3 levels
 2^3 = 8 and log2(8) = 3
-
-# Divide & Conquer
 
 Proof of Correctness for Merge Sort (prove Merge Sort works)
 (using loop invariant method)
