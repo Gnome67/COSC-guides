@@ -228,12 +228,12 @@ This is the receiving of the client’s message and sending the message “I got
 
 Ok, let’s look at PA1 before we look at PA1. Regardless of how you did PA1, you will have:
 
-A call to pthread_create(), ideally in a for loop
-A call to pthread_join(), in a separate for loop
-A void* function for the threads
-If it is not in your void* function, a function to calculate the entropy
-A struct to pass in data to the threading function
-A data structure to hold the values
+- A call to pthread_create(), ideally in a for loop
+- A call to pthread_join(), in a separate for loop
+- A void* function for the threads
+- If it is not in your void* function, a function to calculate the entropy
+- A struct to pass in data to the threading function
+- A data structure to hold the values
 
 Now, we’re going to split up the code you have and the code we have from Professor Rincon. But how? Let’s discuss this in theoretical terms, because I am not here to hold your hand through the entire process. This is a really easy assignment but it is tricky if you overthink it, which is easy to do.
 
