@@ -13,7 +13,12 @@ Here is an example of what the implementation would look like.
 ```cpp
 #include <pthread.h>
 #include <unistd.h>
+#include <vector>
+#include <iostream>
+#include <string>
+
 using namespace std;
+
 struct thread //this is how you pass in info
 {
     int count; //example of how to pass in data to a struct
@@ -23,13 +28,15 @@ struct thread //this is how you pass in info
         count = c;
     }
 };
+
 void* threadInstructions(void* arg)
 {
     thread* threadArg = (thread*) arg; //convert back to struct (from void*)
-    cout << "I am thread" << endl; //to make sure its actually multithreading
+    cout << "I am thread " << threadArg->count << endl; //to make sure its actually multithreading
     threadArg->s = "SUCCESS"; //accessing data once its finished threading
     return NULL; //always returns NULL
 }
+
 int main()
 {
     vector<pthread_t> threadVector; //for a potentially-unlimited amount of threads, a vector is useful in keeping track of all your threads
