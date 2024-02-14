@@ -4,7 +4,8 @@ Constraints = however you have constraints on what choices you can make
 
 Goals = use your choices to reach your goal
 
-Ex. Sudoku Board
+# Example: Sudoku Board
+
 Choices: a number from 0 - 9
 
 Constraints: You can not repeat a number in the row and/or column
