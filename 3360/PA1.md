@@ -1,12 +1,12 @@
 # Part 0: Before we begin
 
-This assignment (and the guide by extension) assumes that you have a basic understanding of C++. If not, Google and AI (ChatGPT) are your friends.
+This assignment (and the guide by extension) assumes that you have a basic understanding of C++. If not, Google and AI (ChatGPT) are your friends. Please note that that does not mean you should rely on AI to code for you. You are on your own if you do this.
 
-This guide is not going to hold your hand and give you all the implementation to complete PA1. Any and all code snippets are for demonstration purposes only. Do not copy them and expect them to work for your implementation. These are to guide you towards the solution, and to encourage critical thinking. Asking for answers is not tolerated, and you will be removed from the server if I have reason to believe you are genuinely trying to cheat.
+This guide is not going to hold your hand and give you all the implementation to complete PA1. Any and all code snippets are for demonstration purposes only. Do not copy them and expect them to work for your implementation. These are to guide you towards the solution, and to encourage critical thinking. Asking for answers is not tolerated, and you will be removed if I have reason to believe you are genuinely trying to cheat.
 
 # Part 1: Introduction
 
-Let’s start with explaining what multithreading is. I will use the analogy of a race, because it is the one I like the most. When you code a single threaded solution, it is similar to a relay race. You have to wait for the first “task” to finish before the next “task” can begin. With multithreading, it is like a traditional race, in which all “tasks” start at the same time. Each string you get from the console as input will have its own thread, however you will not know how many strings you will get. You will then code all the threads such that they all calculate their entropy at the same time.
+Let’s start with explaining what multithreading is. I will use the analogy of a race, because it is the one I like the most. When you code a single threaded solution, it is similar to a relay race. You have to wait for the first “task” to finish before the next “task” can begin. With multithreading, it is like a traditional race, in which all “tasks” start at the same time. Each string you get from the console as input will have its own thread, however you will not know how many strings you will get. You will then code all the threads such that they all perform their tasks at the same time.
 
 Here is an example of what the implementation would look like.
 
@@ -71,14 +71,14 @@ int main()
 Wow, that’s a lot of code. Let’s break it down.
 
 Multithreading is four important things.
-A for loop to create the threads
-A for loop to join the threads
-A struct to pass in the data
-A function to give the thread their instructions
+1. A for loop to create the threads
+2. A for loop to join the threads
+3. A struct to pass in the data
+4. A function to give the thread their instructions
 
 Let’s break it down even further.
 
-A for loop to create the threads
+1. A for loop to create the threads
 
 We are going to be making a thread for each string. However, we will not know how many threads we need to make. That’s why in the example provided, I use a vector. Now if we look at the code, we see:
 
@@ -92,7 +92,7 @@ We are going to be making a thread for each string. However, we will not know ho
         }
 ```
 
-A for loop to join the thread
+2. A for loop to join the threads
 
 ```cpp
 
@@ -104,7 +104,7 @@ A for loop to join the thread
 
 Joining the threads basically means that you want to stop them doing their tasks.
 
-A struct to pass in the data
+3. A struct to pass in the data
 
 ```cpp
 struct thread //this is how you pass in info
@@ -120,7 +120,7 @@ struct thread //this is how you pass in info
 
 Threads can only pass in one argument in their creation. A struct is the best way to package multiple data types into one.
 
-A function to give the thread their instructions
+4. A function to give the thread their instructions
 
 ```cpp
 void* threadInstructions(void* arg)
@@ -147,4 +147,5 @@ E-mail: no
 
 Version 0.01 - 9/15/2023
 Version 0.02 - 11/6/2023
+Version 0.03 - 02/17/2024
 ```
