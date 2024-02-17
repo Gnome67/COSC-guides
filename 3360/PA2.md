@@ -2,7 +2,7 @@
 
 If you’re reading this, you probably have finished PA1. If not, finish PA1 and come back. PA2 builds off what you did in PA1, so you need it to do PA2.
 
-Download the server.cpp, client.cpp, and fireman.cpp files from UH's current education software of choice (Canvas at the time of this guide.
+Download the [server.cpp](https://github.com/Gnome67/COSC-guides/blob/main/3360/server.cpp), [client.cpp](https://github.com/Gnome67/COSC-guides/blob/main/3360/client.cpp), and [fireman.cpp](https://github.com/Gnome67/COSC-guides/blob/main/3360/fireman.cpp) files from this repository, or UH's current education software of choice (Canvas at the time of this guide.
 
 Add the <strings.h> library to both server and client, and the <sys/wait.h> library to the server.
 
