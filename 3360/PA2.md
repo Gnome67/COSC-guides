@@ -1,6 +1,8 @@
 # Part 0: The beginning (again)
 
-If you’re reading this, you probably have finished PA1. If not, finish PA1 and come back.
+If you’re reading this, you probably have finished PA1. If not, finish PA1 and come back. PA2 builds off what you did in PA1, so you need it to do PA2.
+
+Download the server.cpp, client.cpp, and fireman.cpp files from UH's current education software of choice (Canvas at the time of this guide.
 
 Add the <strings.h> library to both server and client, and the <sys/wait.h> library to the server.
 
@@ -260,4 +262,5 @@ Version 0.01 - 10/1/2023
 Version 0.02 - 10/8/2023 (fixed typo)
 Version 0.03 - 10/17/2023 (fixed typo)
 Version 0.04 - 11/6/2023 (moved to github)
+Version 0.05 - 02/17/2024 (specified instructions)
 ```
