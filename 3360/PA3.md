@@ -126,7 +126,7 @@ I then processed my algorithm using the LOCAL VARIABLES, not the ones passed in,
 
 I then used the critical section to make all the child threads except the one i wanted to goto sleep, and then outputted OUTSIDE the critical section.
 
-IMPORTANT NOTE: YOU MUST HAVE AT LEAST 2 MUTEXES.
+## IMPORTANT NOTE: YOU MUST HAVE AT LEAST 2 MUTEXES.
 
 # GITHUB EXCLUSIVE
 
