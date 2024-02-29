@@ -127,7 +127,7 @@ Much more compact and much less readable. The first two lines are grabbing input
 
 That's all you need to understand for the client template code. Let's look at the server.
 
-# Part 1.2: Understaing Sockets (server)
+# Part 1.2: Understanding Sockets (server)
 
 Now let's look at the server.
 
