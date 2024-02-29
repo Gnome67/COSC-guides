@@ -231,13 +231,12 @@ This is the receiving of the client’s message and sending the message “I got
 
 # Part 2: Approaching PA2
 
-
 Ok, let’s look at PA1 before we look at PA2. Regardless of how you did PA1, you will have:
 
 - A call to pthread_create(), ideally in a for loop
 - A call to pthread_join(), in a separate for loop
 - A void* function for the threads, which i will refer to as `ThreadInstructions`
-- If it is not in your void* function, a function to calculate the entropy
+- If it is not in your void* function, a function to calculate the algorithm
 - A struct to pass in data to the threading function, which I will refer to as `ThreadData`
 - A data structure to hold the values
 
@@ -255,6 +254,21 @@ One last thing. We need the fireman function from the fireman.cpp file from the 
 
 I leave the rest up to you because everyone’s code is unique, but if you did it the same way as me where you had a helper function for your algorithm and you sent a string to and from your client and server, then besides calling the appropriate functions, you should be done. See you in PA3.
 
+# Part 3: Testing server and client
+
+So... you want to test your server and client. There are two main ways of doing this. One is to just test it on Moodle, which if you are lazy or in a time crunch, will probably be the one that works for you. Just upload your files to Moodle, and click the check mark button to evaluate your code. If you get a proposed grade, then your code compiled, and you need to do nothing further if said grade is a 100 (unless you messed up, in which case obviously fix it).
+
+The second version assumes you already have set up WSL and VSCode. This guide is not going to explain how to do that. I may make a guide on how to (eventually) though. You will open up VSCode outside of WSL, and press the keys `Ctrl`, `Shift`, and `P` all at the same time, and type in WSL until the option to connect to WSL shows up. If not, either your WSL or your VSCode is not set up properly. Once VSCode opens in WSL, navigate to your folder holding your server and client.cpp, which usually is held in the `mnt/c/` folder. From there, your path will be different based on where you have your Programming Assignment 2 folder installed. For me, mine is `mnt/c/Users/tzkal/Desktop/School/COSC3360/PA2`. Anyways, once you are in the folder that contains your `server.cpp` and `client.cpp` files, you will create two separate terminals, one for the server and the client first. You will always set up the server first.
+
+For the first terminal:
+- Build the server using this command `g++ server.cpp -o server`, if you get an error your code doesn't work.
+- Build the client using this command `g++ client.cpp -o client -lpthread`, if you get an error your code doesn't work.
+- Run the server using `./server 1234`
+
+For the second terminal:
+- Run the client using `./client localhost 1234`
+- It will (hopefully) prompt you for input. Use the same inputs as PA1, and you should receive the same outputs as you did for PA1.
+
 ```
 Assistant Professor tzkal
 Department of Scuffed Sciences
@@ -269,4 +283,5 @@ Version 0.04 - 11/6/2023 (moved to github)
 Version 0.05 - 02/17/2024 (specified instructions)
 Version 0.06 - 02/17/2024 (added template files to github to link to)
 Version 0.07 - 02/17/2024 (grammar tweaks)
+Version 0.08 - 02/18/2024 (instructions on how to build)
 ```
