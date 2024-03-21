@@ -1,6 +1,6 @@
 # Part 0: The end (not really)
 
-I wrote this 2 weeks before PA3 even came out. The majority of this guide was sourced from Tariq Achor Zyed and Frank Bui’s tutorial here. Why not just use their guide? I don’t know. But I figured I’d write this guide.
+I wrote this 2 weeks before PA3 even came out. The majority of this guide was sourced from Tariq Achor Zyed and Frank Bui’s tutorial [here](https://docs.google.com/document/d/1YKy6xpAE4BArbdqLNGA5zB8ptnEHWuUwCrveh10yCH4/edit). Why not just use their guide? I don’t know. But I figured I’d write this guide.
 
 Before we truly begin, let me mention that we don’t need anything from PA2. Find your old PA1 code and make a copy of it for PA3.
 
@@ -209,4 +209,5 @@ Thank you so much for reading my guides. Big shoutout to MadDawg, bwandii, tacho
 Version 0.01 - 10/18/2023
 Version 0.02 - 11/2/2023
 Version 0.03 - 11/5/2023
+Version 0.04 - 03/21/2024
 ```
