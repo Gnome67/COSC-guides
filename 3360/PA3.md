@@ -129,7 +129,7 @@ I then used the critical section to make all the child threads except the one i 
 ### IMPORTANT NOTE: YOU MUST HAVE AT LEAST 2 MUTEXES.
 
 # GITHUB EXCLUSIVE
-
+The code here is for example purposes. It is provided as is and intentionally is not designed to work.
 ```cpp
 //include necessary libraries
 
