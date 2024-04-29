@@ -172,7 +172,7 @@ void* threadInstruct(void* arg)
 int main () 
 {
     vector<string> input;
-    string inputLine
+    string inputLine;
     pthread_mutex_t mutex;
     pthread_mutex_init(&mutex, nullptr);
     pthread_mutex_t mutex2;
