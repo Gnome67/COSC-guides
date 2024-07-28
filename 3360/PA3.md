@@ -157,7 +157,7 @@ void* threadInstruct(void* arg)
     string localInput = arg_ptr->input;
     int localCPU = arg_ptr->cpu;
     pthread_mutex_unlock(mutex);
-    string answer = answer(input);
+    string answer = answer(localInput);
     pthread_mutex_lock(mutex2);
     while(*counter!=localCPU) { pthread_cond_wait(condition, mutex2); }
     pthread_mutex_unlock(mutex2);
